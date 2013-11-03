@@ -1,0 +1,50 @@
+source $(dirname $(readlink -f "$BASH_SOURCE"))/../common/bashrc
+
+FIGNORE=svn:suo:resharper:user:dotCover:ncrunchproject:ncrunchsolution
+PATH=$PATH:$HOME/bin:/workspace/SlimJim/src/SlimJim/bin/Debug:/cygdrive/c/Program\ Files\ \(x86\)/NUnit\ 2.6.2/bin
+export PATH="/cygdrive/c/Ruby200/bin:$PATH"
+M2_HOME='/cygdrive/c/Program Files/Java/maven-2.2.1'
+
+case $TERM in
+	xterm*)
+		PS1="\[\033]0;\u@\h: \w\007\][\u@\h \w]\\$ "
+		;;
+	*)
+		PS1="[\u@\h \w]\\$ "
+		;;
+esac
+
+function __scm_ps1 {
+  dir=$PWD
+
+  while [ "$dir" != "/" ]; do
+    if [ -d "$dir/.hg" ]; then
+      branch=$(hg branch 2>/dev/null)
+      echo " ($branch)"
+      return 0
+    elif [ -d "$dir/.git" ]; then
+      __git_ps1
+      return 0
+    fi
+    dir=`dirname "$dir"`
+  done
+}
+
+PS1="[$CYAN\u@\h $GREEN\w$YELLOW\$(__scm_ps1)$OFF]\$ "
+
+export PS1 FIGNORE M2_HOME PATH
+
+alias ls='ls --color'
+alias grep='grep --color'
+alias find=/bin/find
+alias msbuild=/framework/v4.0.30319/msbuild.exe
+alias ilmerge='/cygdrive/c/Program\ Files\ \(x86\)/Microsoft/ILMerge/ILMerge.exe'
+alias handle='/cygdrive/c/Program\ Files\ \(x86\)/MSBuild/The\ Motley\ Fool/Fool.Build/Resources/RemoteUtilities/handle.exe'
+alias junction='/cygdrive/c/Program\ Files\ \(x86\)/MSBuild/The\ Motley\ Fool/Fool.Build/Resources/RemoteUtilities/junction.exe'
+alias srctool='/cygdrive/c/Program\ Files/Debugging\ Tools\ for\ Windows\ \(x64\)/srcsrv/srctool.exe'
+alias appcmd='/cygdrive/c/Windows/system32/inetsrv/appcmd.exe'
+alias slimjim='SlimJim.exe --ignore ReleaseCandidates --ignore ^Ukmf --ignore Branches --version 2010 --out Solutions'
+alias open=open.sh
+alias start=open.sh
+alias gitex='/cygdrive/c/Program\ Files\ \(x86\)/GitExtensions/gitex.cmd'
+alias sleepnow='rundll32.exe powrprof.dll,SetSuspendState Standby'

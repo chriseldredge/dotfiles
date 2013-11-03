@@ -1,0 +1,7 @@
+if [ -e "${HOME}/.bashrc" ] ; then
+  source "${HOME}/.bashrc"
+fi
+
+# undo dupe environment variables with mixed case.
+unset TMP
+

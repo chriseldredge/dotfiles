@@ -1,0 +1,10 @@
+alias readlink=greadlink
+
+source $(dirname $(readlink -f $BASH_SOURCE))/../common/bashrc
+
+if [ -f /usr/local/opt/chruby/share/chruby/chruby.sh ]; then
+	source /usr/local/opt/chruby/share/chruby/chruby.sh
+fi
+
+export EDITOR='subl -w -n'
+alias ls='ls -G'

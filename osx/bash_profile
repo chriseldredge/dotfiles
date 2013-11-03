@@ -1,0 +1,9 @@
+# startup virtualenv-burrito
+if [ -f $HOME/.venvburrito/startup.sh ]; then
+. $HOME/.venvburrito/startup.sh
+fi
+
+# include .bashrc if it exists
+if [ -f $HOME/.bashrc ]; then
+. $HOME/.bashrc
+fi
