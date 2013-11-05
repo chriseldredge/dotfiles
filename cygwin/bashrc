@@ -35,6 +35,7 @@ PS1="[$CYAN\u@\h $GREEN\W$YELLOW\$(__scm_ps1)$OFF]\$ "
 export PS1 FIGNORE M2_HOME PATH nodosfilewarning
 
 alias ls='ls --color'
+alias clear='cmd /c cls'
 alias grep='grep --color'
 alias devenv='/cygdrive/c/Program\ Files\ \(x86\)/Microsoft\ Visual\ Studio\ 12.0/Common7/IDE/devenv.exe'
 alias msbuild='/cygdrive/c/Program\ Files\ \(x86\)/MSBuild/12.0/Bin/MSBuild.exe'
