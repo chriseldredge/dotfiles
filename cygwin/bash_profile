@@ -3,5 +3,5 @@ if [ -e "${HOME}/.bashrc" ] ; then
 fi
 
 # undo dupe environment variables with mixed case.
-unset TMP
+unset TMP TEMP
 

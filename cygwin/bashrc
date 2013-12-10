@@ -44,3 +44,4 @@ alias handle='/cygdrive/c/Program\ Files\ \(x86\)/MSBuild/The\ Motley\ Fool/Fool
 alias start=open
 alias gitex='/cygdrive/c/Program\ Files\ \(x86\)/GitExtensions/gitex.cmd'
 alias sleepnow='rundll32.exe powrprof.dll,SetSuspendState Standby'
+alias npm=npm.cmd
