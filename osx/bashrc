@@ -7,8 +7,15 @@ source $(dirname $(readlink -f $BASH_SOURCE))/../common/bashrc
 
 if [ -f /usr/local/opt/chruby/share/chruby/chruby.sh ]; then
 	source /usr/local/opt/chruby/share/chruby/chruby.sh
+	source /usr/local/opt/chruby/share/chruby/auto.sh
 	chruby 2.0.0
 fi
 
+export JAVA_HOME="$(/usr/libexec/java_home)"
+export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.6.13.0/libexec"
+
+export PATH=/usr/local/sbin:$PATH
 export EDITOR='subl -w -n'
 alias ls='ls -G'
+alias asmver='mono ~/bin/asmver.exe'
+alias away='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'

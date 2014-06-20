@@ -7,3 +7,5 @@ fi
 if [ -f $HOME/.bashrc ]; then
 . $HOME/.bashrc
 fi
+
+[ -s "/Users/chris/.kre/kvm/kvm.sh" ] && . "/Users/chris/.kre/kvm/kvm.sh" # this loads kvm
