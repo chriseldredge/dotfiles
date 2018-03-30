@@ -5,16 +5,6 @@ source $(dirname $(readlink -f $BASH_SOURCE))/../common/bashrc
 # Add fun emoji unless we're in pycharm.
 [ -z "$PYCHARM" ] && PS1="[$CYAN\u@\h $GREEN\W$YELLOW\$(__git_ps1 \" (%s)\")$OFF]🍄  "
 
-code () {
-    if [[ $# = 0 ]]
-    then
-        open -a "Visual Studio Code"
-    else
-        [[ $1 = /* ]] && F="$1" || F="$PWD/${1#./}"
-        open -a "Visual Studio Code" --args "$F"
-    fi
-}
-
 if [ -f /usr/local/opt/chruby/share/chruby/chruby.sh ]; then
 	source /usr/local/opt/chruby/share/chruby/chruby.sh
 	source /usr/local/opt/chruby/share/chruby/auto.sh
