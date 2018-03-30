@@ -1,11 +1,5 @@
-# startup virtualenv-burrito
-if [ -f $HOME/.venvburrito/startup.sh ]; then
-. $HOME/.venvburrito/startup.sh
-fi
-
 # include .bashrc if it exists
 if [ -f $HOME/.bashrc ]; then
-. $HOME/.bashrc
+  source $HOME/.bashrc
 fi
 
-[ -s "/Users/chris/.kre/kvm/kvm.sh" ] && . "/Users/chris/.kre/kvm/kvm.sh" # this loads kvm
