@@ -6,6 +6,7 @@ export PATH=$PATH:~/bin
 shopt -s histappend
 shopt -s cmdhist
 
+source $(dirname $(readlink -f $BASH_SOURCE))/ssh-agent.sh
 source $(dirname $(readlink -f $BASH_SOURCE))/gitprompt.sh
 
 # Prompt with git branch
