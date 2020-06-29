@@ -4,8 +4,6 @@ source $(dirname $(readlink -f $BASH_SOURCE))/../common/bashrc
 
 PS1="[$CYAN\u@\h $GREEN\W$YELLOW\$(__git_ps1 \" (%s)\")$OFF]🍄  "
 
-export NVM_DIR="$HOME/.nvm"
-source "/usr/local/opt/nvm/nvm.sh"
 
 if [ -f /usr/local/opt/chruby/share/chruby/chruby.sh ]; then
 	source /usr/local/opt/chruby/share/chruby/chruby.sh

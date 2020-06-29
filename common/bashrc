@@ -3,6 +3,13 @@
 export HISTCONTROL=erasedups
 export PATH=$PATH:~/bin
 
+VOLTA_HOME="$HOME/.volta"
+
+if [ -d "$VOLTA_HOME" ]; then
+    PATH="$VOLTA_HOME/bin:$PATH"
+    export VOLTA_HOME PATH
+fi
+
 shopt -s histappend
 shopt -s cmdhist
 
