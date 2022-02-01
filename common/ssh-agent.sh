@@ -1,17 +1,18 @@
 SSH_ENV=$HOME/.ssh/environment
 
+if [ -n "$SSH_CONNECTION" ]; then
+     return
+fi
+
 function start_agent {
-     echo "Initialising new SSH agent..."
-     /usr/bin/ssh-agent | sed 's/^echo/#echo/' > ${SSH_ENV}
-     echo succeeded
+     echo -n "Initialising new SSH agent... "
+     /usr/bin/ssh-agent > ${SSH_ENV}
      chmod 600 ${SSH_ENV}
-     . ${SSH_ENV} > /dev/null
+     source ${SSH_ENV}
 }
 
-# Source SSH settings, if applicable
-
 if [ -f "${SSH_ENV}" ]; then
-     . ${SSH_ENV} > /dev/null
+     source ${SSH_ENV} > /dev/null
      #cygwin: ps -efp ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
      ps ${SSH_AGENT_PID} > /dev/null || {
          start_agent;
