@@ -1,0 +1,18 @@
+CASE_SENSITIVE="true"
+export AWS_PAGER=""
+
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='code -w'
+fi
+
+set-title() {
+    echo -e "\e]0;$*\007"
+}
+
+ssh() {
+    set-title ⚡ $* ⚡;
+    /usr/bin/ssh -2 $*;
+    set-title $HOST;
+}
