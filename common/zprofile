@@ -1,6 +1,17 @@
 CASE_SENSITIVE="true"
 export AWS_PAGER=""
 
+if [ -d "/opt/homebrew/bin" ]; then
+  export PATH="/opt/homebrew/bin:$PATH"
+fi
+
+if [ -d "$HOME/.volta" ]; then
+  export VOLTA_HOME="$HOME/.volta"
+  export PATH="$VOLTA_HOME/bin:$PATH"
+fi
+
+export PATH="$HOME/bin:$PATH"
+
 if type brew &>/dev/null; then
   fpath=("$(brew --prefix)/share/zsh/site-functions" "${fpath[@]}")
 fi
