@@ -1,6 +1,10 @@
 CASE_SENSITIVE="true"
 export AWS_PAGER=""
 
+if type brew &>/dev/null; then
+  fpath=("$(brew --prefix)/share/zsh/site-functions" "${fpath[@]}")
+fi
+
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
