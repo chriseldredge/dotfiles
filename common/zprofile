@@ -10,6 +10,18 @@ if [ -d "$HOME/.volta" ]; then
   export PATH="$VOLTA_HOME/bin:$PATH"
 fi
 
+if [ -d "$HOME/.dotnet/tools" ]; then
+  export PATH="$PATH:$HOME/.dotnet/tools"
+fi
+
+if [ -r "$HOME/.cargo/env" ]; then
+  source "$HOME/.cargo/env"
+fi
+
+if [ -d "$HOME/.local/bin" ]; then
+  export PATH="$PATH:$HOME/.local/bin"
+fi
+
 export PATH="$HOME/bin:$PATH"
 
 if type brew &>/dev/null; then
