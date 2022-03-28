@@ -6,3 +6,5 @@ if type xclip &>/dev/null; then
   alias putclip='xclip -i -selection clipboard'
 fi
 
+unsetopt share_history
+setopt inc_append_history
