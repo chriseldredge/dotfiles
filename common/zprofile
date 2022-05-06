@@ -1,6 +1,9 @@
 CASE_SENSITIVE="true"
 export AWS_PAGER=""
 
+bindkey "^[^[[C" forward-word
+bindkey "^[^[[D" backward-word
+
 if [ -d "/opt/homebrew/bin" ]; then
   export PATH="/opt/homebrew/bin:$PATH"
 fi
