@@ -39,6 +39,11 @@ if type volta &>/dev/null; then
   fpath=("${VOLTA_HOME}/site-functions" "${fpath[@]}")
 fi
 
+
+if type direnv &>/dev/null; then
+  eval "$(direnv hook zsh)"
+fi
+
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
