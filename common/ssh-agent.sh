@@ -11,7 +11,9 @@ function start_agent {
      source ${SSH_ENV}
 }
 
-if [ -f "${SSH_ENV}" ]; then
+if [ -x "${HOME}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh" ]; then
+     export SSH_AUTH_SOCK="${HOME}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh"
+elif [ -f "${SSH_ENV}" ]; then
      source ${SSH_ENV} > /dev/null
      #cygwin: ps -efp ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
      ps ${SSH_AGENT_PID} > /dev/null || {
