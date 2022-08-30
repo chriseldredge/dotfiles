@@ -1,0 +1,32 @@
+[include]
+    path = delta-themes.gitconfig
+[core]
+	pager = delta
+	excludesfile = global.gitignore
+[init]
+	defaultBranch = mainline
+[user]
+	email = chris.eldredge@gmail.com
+	name = Chris Eldredge
+[push]
+	default = simple
+[alias]
+	dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)%an <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+[color]
+	ui = auto
+[delta]
+	navigate = true
+	line-numbers = true
+	side-by-side = true
+	features = mantis-shrimp
+#	features = calochortus-lyallii
+[merge]
+	conflictstyle = diff3
+[diff]
+	colorMoved = default
+[interactive]
+	diffFilter = delta --colorOnly
+[commit]
+	template = ~/dotfiles/git/commit-template
+[pull]
+	rebase = true
