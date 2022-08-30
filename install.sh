@@ -6,12 +6,12 @@ if [ ! -d $HOME/.oh-my-zsh ]; then
 fi
 
 if ! grep ^ZSH_CUSTOM $HOME/.zshrc >/dev/null 2>&1; then
-    SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+    SCRIPTPATH="$( cd -- "$(dirname "$0")/oh-my-zsh" >/dev/null 2>&1 ; pwd -P )"
     DIRP=${SCRIPTPATH:$#HOME}
     sed -i -c "1s/^/ZSH_CUSTOM=\"\$HOME${DIRP//\//\\/}\/custom\"\n\n/" $HOME/.zshrc
 fi
 
-COMMONPATH="$( cd -- "$(dirname "$0")/../common" >/dev/null 2>&1 ; pwd -P )"
+COMMONPATH="$( cd -- "$(dirname "$0")/common" >/dev/null 2>&1 ; pwd -P )"
 COMMONPATH_REL=${COMMONPATH:$#HOME+1}
 
 for i in "zprofile" "zshenv"; do
@@ -20,3 +20,11 @@ for i in "zprofile" "zshenv"; do
         $(cd "$HOME" && ln -s "${COMMONPATH_REL}/${i}" ".${i}")
     fi
 done
+
+if ! grep '^\[include\]' $HOME/.gitconfig >/dev/null 2>&1; then
+    GITDIR="$( cd -- "$(dirname "$0")/git" >/dev/null 2>&1 ; pwd -P )"
+    DIRP=${GITDIR:$#HOME}
+    sed -i -c "1s/^/[include]\n/" $HOME/.gitconfig
+    git config --global --add include.path "~$DIRP/global.gitconfig"
+fi
+
