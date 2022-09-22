@@ -2,7 +2,7 @@
     path = delta-themes.gitconfig
 [core]
 	pager = delta
-	excludesfile = global.gitignore
+	excludesfile = ~/dotfiles/git/global.gitignore
 [init]
 	defaultBranch = mainline
 [user]
