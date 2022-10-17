@@ -18,7 +18,7 @@ while read -r line; do
             currentdevice="$sdev"
             currentmac=$(echo "$ifout" | awk '/ether/{print $2}')
             currentinet=$(echo "$ifout" | awk '/inet /{print $2}')
-            currentinet6=$(echo "$ifout" | awk '/inet6 /{print $2}')
+            #currentinet6=$(echo "$ifout" | awk '/inet6 /{print $2}')
 
             # may have multiple active devices, so echo it here
             printf "%s\t%-30s\t%s\t%-15s\t%s\n" "$currentdevice" "$currentservice" "$currentmac" "$currentinet" "$currentinet6"
