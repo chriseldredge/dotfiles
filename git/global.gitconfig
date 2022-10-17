@@ -25,7 +25,7 @@
 [diff]
 	colorMoved = default
 [interactive]
-	diffFilter = delta --colorOnly
+	diffFilter = delta --color-only
 [commit]
 	template = ~/dotfiles/git/commit-template
 [pull]
