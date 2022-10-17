@@ -1,5 +1,4 @@
 CASE_SENSITIVE="true"
-export AWS_PAGER=""
 
 bindkey "^[^[[C" forward-word
 bindkey "^[^[[D" backward-word
@@ -58,6 +57,8 @@ ssh() {
     /usr/bin/ssh -2 $*;
     set-title $HOST;
 }
+
+export LESS="-RFX"
 
 alias format-xml='xmllint --format -'
 alias format-html='tidy -config $HOME/codes/dotfiles/common/tidy_html_indent_config.txt -'
