@@ -49,13 +49,17 @@ else
 fi
 
 set-title() {
-    echo -e "\e]0;$*\007"
+  t="$*"
+  if [[ -n $SSH_CONNECTION ]]; then
+    t="⚡ $(hostname -s) $* ⚡"
+  fi
+  echo -e "\e]0;$t\007"
 }
 
 ssh() {
-    set-title ⚡ $* ⚡;
-    /usr/bin/ssh -2 $*;
-    set-title $HOST;
+  set-title ⚡ $* ⚡
+  /usr/bin/ssh -2 $*
+  set-title $HOST
 }
 
 export LESS="-RFX"
