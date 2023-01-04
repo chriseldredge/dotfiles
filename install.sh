@@ -1,14 +1,20 @@
 #!/bin/zsh
 
+SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+DIRP=${SCRIPTPATH:$#HOME}
+
 if [ ! -d $HOME/.oh-my-zsh ]; then
     echo "Installing oh-my-zsh from scratch"
     env CHSH=no RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
 if ! grep ^ZSH_CUSTOM $HOME/.zshrc >/dev/null 2>&1; then
-    SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
-    DIRP=${SCRIPTPATH:$#HOME}
     sed -i '' "1s/^/DOTFILES=\"\$HOME${DIRP//\//\\/}\"\nZSH_CUSTOM=\"\$HOME${DIRP//\//\\/}\/oh-my-zsh\/custom\"\n\n/" $HOME/.zshrc
+fi
+
+PLUGINS_DIR="$HOME${DIRP}/oh-my-zsh/custom/plugins"
+if [ ! -d "${PLUGINS_DIR}/zsh-autosuggestions" ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions "${PLUGINS_DIR}/zsh-autosuggestions"
 fi
 
 eval "zshrc_$(grep ^plugins= $HOME/.zshrc)"
