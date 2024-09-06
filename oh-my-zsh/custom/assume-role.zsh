@@ -7,6 +7,7 @@ deactivate-assumed-role() {
 assume-role() {
     ROLE_ARN=$1
     SESSION_NAME="${2:-cveld-local-dev}"
+    POLICY="${3}"
 
     deactivate-assumed-role
 
@@ -24,7 +25,16 @@ assume-role() {
     fi
 
     echo Assuming role $ROLE_ARN with session name $SESSION_NAME
-    ROLE_JSON=$(aws sts assume-role --role-arn $ROLE_ARN --role-session-name "$SESSION_NAME" --output json)
+
+    ARGS=("sts" "assume-role" "--role-arn" "$ROLE_ARN" "--role-session-name" "$SESSION_NAME" "--output" "json")
+
+    if [[ -n "${POLICY}" ]]; then
+        ARGS+="--policy"
+        ARGS+="${POLICY}"
+    fi
+
+    echo aws "${ARGS[@]}"
+    ROLE_JSON=$(aws "${ARGS[@]}")
     RES=$?
     if ((RES!=0)); then
         return $RES
