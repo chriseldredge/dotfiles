@@ -16,9 +16,12 @@ PLUGINS_DIR="$HOME${DIRP}/oh-my-zsh/custom/plugins"
 if [ ! -d "${PLUGINS_DIR}/zsh-autosuggestions" ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions "${PLUGINS_DIR}/zsh-autosuggestions"
 fi
+if [ ! -d "${PLUGINS_DIR}/zsh-syntax-highlighting" ]; then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting "${PLUGINS_DIR}/zsh-syntax-highlighting"
+fi
 
 eval "zshrc_$(grep ^plugins= $HOME/.zshrc)"
-zshrc_plugins_upd=("${zshrc_plugins[@]}" "zsh-autosuggestions")
+zshrc_plugins_upd=("${zshrc_plugins[@]}" "git" "zsh-autosuggestions" "zsh-syntax-highlighting")
 zshrc_plugins_uniq=$(echo "${(u)zshrc_plugins_upd[@]}")
 
 if [ "$zshrc_plugins_uniq" != "$zshrc_plugins" ]; then
