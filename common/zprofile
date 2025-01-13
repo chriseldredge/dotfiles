@@ -1,7 +1,9 @@
 CASE_SENSITIVE="true"
 
 bindkey "^[^[[C" forward-word
+bindkey "^[[1;3C" forward-word
 bindkey "^[^[[D" backward-word
+bindkey "^[[1;3D" backward-word
 
 if [ -d "/opt/homebrew/bin" ]; then
   export PATH="/opt/homebrew/bin:$PATH"
