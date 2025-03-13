@@ -12,16 +12,30 @@ assume-role() {
     local PRINT_VARS=false
     local DEACTIVATE_FIRST=false
     local VERBOSE=false
+    local WEB_IDENTITY_TOKEN=""
+    local REGION=""
+    local DURATION=""
 
-    # Parse named arguments
     while [[ $# -gt 0 ]]; do
         case "$1" in
+            --duration-seconds)
+                DURATION=$2
+                shift 2
+                ;;
+            --region)
+                REGION=$2
+                shift 2
+                ;;
             --session-name)
                 SESSION_NAME="$2"
                 shift 2
                 ;;
             --policy)
                 POLICY="$2"
+                shift 2
+                ;;
+            --web-identity-token)
+                WEB_IDENTITY_TOKEN="$2"
                 shift 2
                 ;;
             --deactivate-first)
@@ -58,6 +72,11 @@ assume-role() {
         return 1
     fi
 
+    if [[ "$EXPORT_VARS" == "false" && "$PRINT_VARS" == "false" ]]; then
+        echo "Error: either --print or --export is required" >&2
+        return 1
+    fi
+
     if $DEACTIVATE_FIRST; then
         deactivate-assumed-role
     fi
@@ -78,18 +97,38 @@ assume-role() {
 
         ROLE_ARN=${ROLE_ARNS}
     else
-        ROLE_ARN=ROLE
+        ROLE_ARN="${ROLE}"
     fi
 
     if $VERBOSE; then
         echo Assuming role $ROLE_ARN with session name $SESSION_NAME
     fi
 
-    local ARGS=("sts" "assume-role" "--role-arn" "$ROLE_ARN" "--role-session-name" "$SESSION_NAME" "--output" "json")
+    local ARGS=("sts")
+
+    if [[ -z "$WEB_IDENTITY_TOKEN" ]]; then
+        ARGS+="assume-role"
+    else
+        ARGS+="assume-role-with-web-identity"
+        ARGS+="--web-identity-token"
+        ARGS+="$WEB_IDENTITY_TOKEN"
+    fi
+
+    ARGS+=("--role-arn" "$ROLE_ARN" "--role-session-name" "$SESSION_NAME" "--output" "json")
+
+    if [[ -n "${DURATION}" ]]; then
+        ARGS+="--duration-seconds"
+        ARGS+="${DURATION}"
+    fi
 
     if [[ -n "${POLICY}" ]]; then
         ARGS+="--policy"
         ARGS+="${POLICY}"
+    fi
+
+    if [[ -n "${REGION}" ]]; then
+        ARGS+="--region"
+        ARGS+="${REGION}"
     fi
 
     if $VERBOSE; then
@@ -99,6 +138,7 @@ assume-role() {
     local ROLE_JSON=$(aws "${ARGS[@]}")
     local RES=$?
     if ((RES!=0)); then
+        echo Error: $ROLE_JSON >&2
         return $RES
     fi
 
