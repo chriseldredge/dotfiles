@@ -6,7 +6,7 @@ deactivate-assumed-role() {
 
 assume-role() {
     local ROLE=""
-    local SESSION_NAME="cveld-local-dev"
+    local SESSION_NAME="${USER}@${HOST}"
     local POLICY=""
     local EXPORT_VARS=false
     local PRINT_VARS=false
