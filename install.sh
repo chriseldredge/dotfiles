@@ -20,6 +20,8 @@ if [ ! -d "${PLUGINS_DIR}/zsh-syntax-highlighting" ]; then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting "${PLUGINS_DIR}/zsh-syntax-highlighting"
 fi
 
+#foo
+
 eval "zshrc_$(grep ^plugins= $HOME/.zshrc)"
 zshrc_plugins_upd=("${zshrc_plugins[@]}" "git" "zsh-autosuggestions" "zsh-syntax-highlighting")
 zshrc_plugins_uniq=$(echo "${(u)zshrc_plugins_upd[@]}")
