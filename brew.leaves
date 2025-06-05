@@ -18,5 +18,6 @@ rbenv
 ruby
 rustup-init
 unison
+uv
 watch
 youtube-dl
