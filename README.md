@@ -1,4 +1,4 @@
 dotfiles
 ========
 
-Bash bash Bash bash bash Bash bash
+Zsh zsh Zsh zsh zsh zsh Zsh zsh
