@@ -154,6 +154,9 @@ assume-role() {
     fi
 
     if $PRINT_VARS; then
+        if [ -n "$WEB_IDENTITY_TOKEN" ]; then
+            echo WEB_IDENTITY_TOKEN: \"${WEB_IDENTITY_TOKEN}\"
+        fi
         echo "AWS_ACCESS_KEY_ID=\"${LOCAL_AWS_ACCESS_KEY_ID}\""
         echo "AWS_SECRET_ACCESS_KEY=\"${LOCAL_AWS_SECRET_ACCESS_KEY}\""
         echo "AWS_SESSION_TOKEN=\"${LOCAL_AWS_SESSION_TOKEN}\""
